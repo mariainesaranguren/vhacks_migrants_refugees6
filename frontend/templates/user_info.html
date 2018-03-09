@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Info</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <div id="locationField">
+      <form method="post" id="form">
+        <input id="autocomplete" placeholder="Enter your address"
+               onFocus="geolocate()" type="text">
+      
+    {% if jobs%}
+        <input id="job_title" placeholder="Enter job title" type="text">
+        <input id="job_description" placeholder="Enter job description" type="text">
+        <input id="wage" placeholder="Enter hourly wage" type="number" min="0.00" max="10000.00" step="0.01">
+        <input id="start_date" placeholder="Enter start date" type="date">
+    {%endif%}
+    <input type="submit" value="Submit">
+      </form>
+    </div>
+    <script>
+
+    document.querySelector('#form').onsubmit = function() {
+
+        // Initialize new request
+        const request = new XMLHttpRequest();
+        const location = document.querySelector('#autocomplete').value;
+        request.open('POST', '/user_infopost');
+        request.onload = function() {
+          window.location.href='/success';
+        }
+        const data = new FormData();
+        data.append('location', location);
+        if (document.querySelector('#job_title')) {
+          console.log("poster");
+          data.append('job_title', document.querySelector("#job_title").value);
+          data.append('job_description', document.querySelector("#job_description").value);
+          data.append('wage', document.querySelector("#wage").value);
+          data.append('start_date', document.querySelector("#start_date").value);
+        }
+        // Add data to send with request
+
+
+        // Send request
+        request.send(data);
+        return false;
+    }
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+        console.log("init autocomplete");
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+      }
+
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        console.log("geolocating")
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdxJonFMWxdjej5S9tErA8gofopW7FME8&libraries=places&callback=initAutocomplete"
+        async defer></script>
+  </body>
+</html>
