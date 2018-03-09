@@ -1,5 +1,61 @@
 <!DOCTYPE html>
 {% include 'layout.html' %}
+<style>
+
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 150px;
+  width: 200px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+</style>
 <body>
 <!-- Page Content -->
     <div class="container">
@@ -7,54 +63,101 @@
       <h1 class="my-4 text-center text-lg-left">{{title}}</h1>
       <form method="post">
         <div class="row text-center text-lg-left">
-
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="0"> S1<br>
+            <input type="checkbox" name="skill" value="0" id="cb0">
+            <label for="cb0"><img src="/static/hairdresser.jpg" /> </label>
+            Hairdresser
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="1"> S1<br>
+            <input type="checkbox" name="skill" value="1" id="cb1">
+            <label for="cb1"><img src="/static/agriculture.jpeg" /> </label>
+            Agricultural Work
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="2"> S1<br>
+            <input type="checkbox" name="skill" value="2" id="cb2">
+            <label for="cb2"><img src="/static/child-caregiver.jpg" /> </label>
+            Child Caregiver
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="3"> S1<br>
+            <input type="checkbox" name="skill" value="3" id="cb3">
+            <label for="cb3"><img src="/static/cook.jpg" /> </label>
+            Cook
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="4"> S1<br>
+            <input type="checkbox" name="skill" value="4" id="cb4">
+            <label for="cb4"><img src="/static/driver.jpg" /> </label>
+            Driver
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="5"> S1<br>
+            <input type="checkbox" name="skill" value="5" id="cb5"> 
+            <label for="cb5"><img src="/static/elderly-caregiver.jpeg" /> </label>
+            Elderly Caregiver
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="6"> S1<br>
+            <input type="checkbox" name="skill" value="6" id="cb6">
+            <label for="cb6"><img src="/static/electrician.jpeg" /> </label>
+            Electrician
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="7"> S1<br>
+            <input type="checkbox" name="skill" value="7" id="cb7">
+            <label for="cb7"><img src="/static/fishing.jpeg" /> </label>
+            Fishing
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="8"> S1<br>
+            <input type="checkbox" name="skill" value="8" id="cb8">
+            <label for="cb8"><img src="/static/handicraft.jpeg" /> </label>
+            Handicraft
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="9"> S1<br>
+            <input type="checkbox" name="skill" value="9" id="cb9">
+            <label for="cb9"><img src="/static/housekeeper.jpeg" /> </label>
+            Cleaner
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="10"> S1<br>
+            <input type="checkbox" name="skill" value="10" id="cb10">
+            <label for="cb10"><img src="/static/metal-worker.jpeg" /> </label>
+            Metal Worker
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="11"> S1<br>
+            <input type="checkbox" name="skill" value="11" id="cb11">
+            <label for="cb11"><img src="/static/office-clerk.jpg" /> </label>
+            Office Clerk
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="12"> S1<br>
+            <input type="checkbox" name="skill" value="12" id="cb12">
+            <label for="cb12"><img src="/static/sales-worker.jpg" /> </label>
+            Sales Worker
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="13"> S1<br>
+            <input type="checkbox" name="skill" value="13" id="cb13">
+            <label for="cb13"><img src="/static/tour-guide.jpg" /> </label>
+            Tour Guide
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="14"> S1<br>
+            <input type="checkbox" name="skill" value="14" id="cb14">
+            <label for="cb14"><img src="/static/waiter.jpg" /> </label>
+            Waiter
+            <br>
           </div>
           <div class="col-lg-3 col-md-4 col-xs-6">
-            <input type="checkbox" name="skill" value="15"> S1<br>
+            <input type="checkbox" name="skill" value="15" id="cb15">
+            <label for="cb15"><img src="/static/accountant.jpeg" /> </label>
+            Accountant
+            <br>
           </div>
       </div>
     <input type="submit" value="Submit">
