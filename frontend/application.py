@@ -24,7 +24,16 @@ def role():
 @app.route("/skills", methods=["GET", "POST"])
 def skills():
 	if request.method == 'GET':
-		return render_template("skills.html")
+		return render_template("skills.html", title="Select Skills You Have")
+	else:
+		skills = request.form.getlist('skill')
+		session['skills'] = skills
+		return redirect(url_for('user_info'))
+
+@app.route("/skills_want", methods=["GET", "POST"])
+def skills_want():
+	if request.method == 'GET':
+		return render_template("skills.html", title="Select Skills You Want")
 	else:
 		skills = request.form.getlist('skill')
 		session['skills'] = skills
