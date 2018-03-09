@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lavoro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=169037257082099&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	
+<script>
+	function statusChangeCallback(response){
+	   console.log(response);
+	   if(response.status === 'connected'){
+	      testAPI();
+	    }else {console.log("somethingwong")
+	    }
+	}
+
+	function checkLoginState(){
+	    FB.getLoginStatus(function(response){
+	       statusChangeCallback(response);
+	    });
+	}
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '169037257082099',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.12'
+          });
+         FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+     };
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+   function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.id);
+      document.getElementsByName('body').innerHTML =
+        'Thanks for logging in, ' + response.id + '!';
+	$.ajax({
+	   dataType: 'json',
+	   type:"POST",
+	   url: "",
+	   data: response.id,
+	   crossDomain: true,
+	   success: function(data){alert(data)}
+	});
+    });
+  }
+   </script>
+
+<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+</body>
+</html>

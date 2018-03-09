@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Lavoro</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="styles.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,16 +15,16 @@
 		<div class="container">
 		  <div class="row">
 			  <div class="col-sm-3">
-			  	<a href="base.html"><img class="flag" src="src/it.svg"></a>
+			  	<a href="/login"><img class="flag" src="{{ url_for('static', filename='it.svg') }}"></a>
 			  </div>
 			  <div class="col-sm-3">
-			  	<img class="flag" src="src/gb.svg">
+			  	<a href="/login"><img class="flag" src="{{ url_for('static', filename='gb.svg') }}"></a>
 			  </div>
 			  <div class="col-sm-3">
-			  	<img class="flag" src="src/sy.svg">
+			  	<a href="/login"><img class="flag" src="{{ url_for('static', filename='sy.svg') }}"></a>
 			  </div>
 			  <div class="col-sm-3">
-			  	<img class="flag" src="src/es.svg">
+			  	<a href="/login"><img class="flag" src="{{ url_for('static', filename='es.svg') }}"></a>
 			  </div>
 			</div>
 		</div>
