@@ -45,15 +45,15 @@ def receive_message():
                     if txt_received:
                         recipient_id = message['sender']['id']
                         if txt_received.lower() == 'a' or txt_received.lower() == 'd':
-                            post_to_lavoro(txt_received.lower(), recipient_id), job_id)
+                            post_to_lavoro(txt_received.lower(), recipient_id, job_id)
                             return "Message Processed"
-                    """
+
                         #translate text
                         #TODO: check if txt is not english
-                        transfer_to_translate(txt_received)
-                        post_to_lavoro('./translateFiles/vtext{}.txt'.format(num), id_to_phone.get(recipient_id))
-                        return "Message Processed"
-                    """
+                        #transfer_to_translate(txt_received)
+                        #post_to_lavoro('./translateFiles/vtext{}.txt'.format(num), id_to_phone.get(recipient_id))
+                        #return "Message Processed"
+
                 else:
                     return "NOT PROCESSED- no text present"
  
@@ -75,20 +75,20 @@ def transfer_to_translate(text, target):
     #See https://g.co/cloud/translate/v2/translate-reference#supported_languages
     
     translate_client = translate.Client()
-        if isinstance(text, six.binary_type):
-            text = text.decode('utf-8')
+    if isinstance(text, six.binary_type):
+        text = text.decode('utf-8')
 
         # Text can also be a sequence of strings, in which case this method
         # will return a sequence of results for each text.
-        result = translate_client.translate(
-            text, target_language=target)
+    result = translate_client.translate(
+    text, target_language=target)
 
         # print(u'Text: {}'.format(result['input']))
         # print(u'Translation: {}'.format(result['translatedText']))
         # print(u'Detected source language: {}'.format(
         #     result['detectedSourceLanguage']))
 
-        return result['translatedText']
+    return result['translatedText']
 
 
 
