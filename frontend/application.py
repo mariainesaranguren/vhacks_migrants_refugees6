@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, session
 
 app = Flask(__name__)
 
@@ -16,7 +16,12 @@ def roles():
 
 @app.route("/skills", methods=["GET", "POST"])
 def skills():
-	return render_template("skills.html")
+	if request.method == 'GET':
+		return render_template("skills.html")
+	else:
+		skills = request.form.getlist('skill')
+		session['skills'] = skills
+		return render_template("user_info.html")
 
 @app.route("/user_info", methods=["GET", "POST"])
 def user_info():
