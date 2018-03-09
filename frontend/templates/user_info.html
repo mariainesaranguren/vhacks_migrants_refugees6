@@ -22,7 +22,7 @@
         // Initialize new request
         const request = new XMLHttpRequest();
         const location = document.querySelector('#autocomplete').value;
-        request.open('POST', '/user_info');
+        request.open('POST', '/user_infopost');
         request.onload = function() {
           window.location.href='/success'
         }

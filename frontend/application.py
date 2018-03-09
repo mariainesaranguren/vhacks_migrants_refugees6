@@ -14,8 +14,6 @@ def login():
 
 @app.route("/login_post", methods=["POST"])
 def login_post():
-	print request
-	print request.json
 	session['user_id'] = request.json
 	return '{}'
 
@@ -38,7 +36,7 @@ def user_info():
 
 @app.route("/user_infopost", methods=["POST"])
 def user_infopost():
-	session['location'] = request.data.get('location')
+	session['location'] = request.form.get('location')
 	return '{}'
 
 @app.route("/success")
