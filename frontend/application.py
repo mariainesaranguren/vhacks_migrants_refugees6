@@ -8,8 +8,24 @@ app.secret_key = os.urandom(24)
 def index():
     return render_template("index.html")
 
-@app.route("/login")
-def login():
+@app.route("/login_it")
+def login_it():
+	session['lang'] = 'it'
+	return render_template("login.html")
+
+@app.route("/login_gb")
+def login_gb():
+	session['lang'] = 'gb'
+	return render_template("login.html")		
+
+@app.route("/login_sy")
+def login_sy():
+	session['lang'] = 'sy'
+	return render_template("login.html")	
+
+@app.route("/login_es")
+def login_es():
+	session['lang'] = 'es'
 	return render_template("login.html")	
 
 @app.route("/login_post", methods=["POST"])
@@ -61,5 +77,5 @@ def user_infopost():
 
 @app.route("/success")
 def success():
-	return 'Success!'
+	return 'Success! We will contact you with information about a successful matching through Facebook Messenger soon.'
 
