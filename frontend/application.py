@@ -1,17 +1,24 @@
-from flask import Flask, jsonify, render_template, request, session
+from flask import Flask, jsonify, render_template, request, session, redirect, url_for
+import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-	return render_template("login.html")
+	if request.method == 'GET':
+		return render_template("login.html")
+	else:
+		print request.json
+		session['user_id'] = request.json
+		return redirect(url_for('role'))
 
 @app.route("/role")
-def roles():
+def role():
 	return render_template("role.html")
 
 @app.route("/skills", methods=["GET", "POST"])

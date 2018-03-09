@@ -58,8 +58,9 @@
       $.ajax({
         dataType: 'json',
         type:"POST",
-        url: "",
-        data: response.id,
+        url: "/login",
+        data: JSON.stringify(response.id, null, '\t'),
+        contentType: 'application/json;charset=UTF-8',
         crossDomain: true,
         success: function(data){alert(data)}
       });
