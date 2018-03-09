@@ -37,15 +37,26 @@ def skills_want():
 	else:
 		skills = request.form.getlist('skill')
 		session['skills'] = skills
-		return redirect(url_for('user_info'))
+		return redirect(url_for('poster_info'))
+
+@app.route("/poster_info")
+def poster_info():
+	return render_template("user_info.html", jobs=True)
 
 @app.route("/user_info")
 def user_info():
-	return render_template("user_info.html")
+	return render_template("user_info.html", jobs=False)
 
 @app.route("/user_infopost", methods=["POST"])
 def user_infopost():
 	session['location'] = request.form.get('location')
+	if request.form.get('job_title'):
+		# put in the database here instead of this session thing
+		session['job_title'] = request.form.get('job_title')
+		session['job_description'] = request.form.get('job_description')
+		session['wage'] = request.form.get('wage')
+		session['start_date'] = request.form.get('start_date')
+		print session['wage']
 	return '{}'
 
 @app.route("/success")

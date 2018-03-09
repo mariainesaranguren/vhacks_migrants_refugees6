@@ -11,10 +11,16 @@
       <form method="post" id="form">
         <input id="autocomplete" placeholder="Enter your address"
                onFocus="geolocate()" type="text">
-        <input type="submit" value="Submit">
+      
+    {% if jobs%}
+        <input id="job_title" placeholder="Enter job title" type="text">
+        <input id="job_description" placeholder="Enter job description" type="text">
+        <input id="wage" placeholder="Enter hourly wage" type="number" min="0.00" max="10000.00" step="0.01">
+        <input id="start_date" placeholder="Enter start date" type="date">
+    {%endif%}
+    <input type="submit" value="Submit">
       </form>
     </div>
-
     <script>
 
     document.querySelector('#form').onsubmit = function() {
@@ -24,12 +30,19 @@
         const location = document.querySelector('#autocomplete').value;
         request.open('POST', '/user_infopost');
         request.onload = function() {
-          window.location.href='/success'
+          window.location.href='/success';
         }
-
-        // Add data to send with request
         const data = new FormData();
         data.append('location', location);
+        if (document.querySelector('#job_title')) {
+          console.log("poster");
+          data.append('job_title', document.querySelector("#job_title").value);
+          data.append('job_description', document.querySelector("#job_description").value);
+          data.append('wage', document.querySelector("#wage").value);
+          data.append('start_date', document.querySelector("#start_date").value);
+        }
+        // Add data to send with request
+
 
         // Send request
         request.send(data);
