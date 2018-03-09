@@ -10,22 +10,22 @@ def index():
 
 @app.route("/login_it")
 def login_it():
-	session['lang'] = 'it'
+	session['language'] = 'IT'
 	return render_template("login.html")
 
 @app.route("/login_gb")
 def login_gb():
-	session['lang'] = 'gb'
+	session['language'] = 'EN'
 	return render_template("login.html")		
 
 @app.route("/login_sy")
 def login_sy():
-	session['lang'] = 'sy'
+	session['language'] = 'AR'
 	return render_template("login.html")	
 
 @app.route("/login_es")
 def login_es():
-	session['lang'] = 'es'
+	session['language'] = 'ES'
 	return render_template("login.html")	
 
 @app.route("/login_post", methods=["POST"])
@@ -37,14 +37,9 @@ def login_post():
 def role():
 	return render_template("role.html")
 
-@app.route("/skills", methods=["GET", "POST"])
-def skills():
-	if request.method == 'GET':
-		return render_template("skills.html", title="Select Skills You Have")
-	else:
-		skills = request.form.getlist('skill')
-		session['skills'] = skills
-		return redirect(url_for('user_info'))
+@app.route("/poster_info")
+def poster_info():
+	return render_template("user_info.html", jobs=True)
 
 @app.route("/skills_want", methods=["GET", "POST"])
 def skills_want():
@@ -55,9 +50,14 @@ def skills_want():
 		session['skills'] = skills
 		return redirect(url_for('poster_info'))
 
-@app.route("/poster_info")
-def poster_info():
-	return render_template("user_info.html", jobs=True)
+@app.route("/skills", methods=["GET", "POST"])
+def skills():
+	if request.method == 'GET':
+		return render_template("skills.html", title="Select Skills You Have")
+	else:
+		skills = request.form.getlist('skill')
+		session['skills'] = skills
+		return redirect(url_for('user_info'))
 
 @app.route("/user_info")
 def user_info():
@@ -67,12 +67,12 @@ def user_info():
 def user_infopost():
 	session['location'] = request.form.get('location')
 	if request.form.get('job_title'):
-		# put in the database here instead of this session thing
 		session['job_title'] = request.form.get('job_title')
 		session['job_description'] = request.form.get('job_description')
 		session['wage'] = request.form.get('wage')
 		session['start_date'] = request.form.get('start_date')
-		print session['wage']
+
+	print(session)
 	return '{}'
 
 @app.route("/success")
