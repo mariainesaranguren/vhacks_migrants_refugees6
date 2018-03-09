@@ -30,12 +30,18 @@ def skills():
 	else:
 		skills = request.form.getlist('skill')
 		session['skills'] = skills
-		return render_template("user_info.html")
+		return redirect(url_for('user_info'))
 
-@app.route("/user_info", methods=["GET", "POST"])
+@app.route("/user_info")
 def user_info():
-	if request.method == 'POST':
-		return render_template("login.html")
-	else:
-		return render_template("user_info.html")
+	return render_template("user_info.html")
+
+@app.route("/user_infopost", methods=["POST"])
+def user_infopost():
+	session['location'] = request.data.get('location')
+	return '{}'
+
+@app.route("/success")
+def success():
+	return 'Success!'
 

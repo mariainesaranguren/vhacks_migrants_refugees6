@@ -23,7 +23,9 @@
         const request = new XMLHttpRequest();
         const location = document.querySelector('#autocomplete').value;
         request.open('POST', '/user_info');
-
+        request.onload = function() {
+          window.location.href='/success'
+        }
 
         // Add data to send with request
         const data = new FormData();
