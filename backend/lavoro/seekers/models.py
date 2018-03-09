@@ -1,6 +1,7 @@
 from django.db import models
 from skills.models import Skill
 from jobs.models import Job
+from lavoro.utils import LANGUAGE_CHOICES
 
 class Seeker(models.Model):
     first_name = models.CharField(max_length=100)
@@ -12,3 +13,4 @@ class Seeker(models.Model):
     location_text = models.CharField(max_length=200)
     facebook_id = models.BigIntegerField()
     jobs = models.ForeignKey(Job, on_delete=models.CASCADE)
+    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
