@@ -15,8 +15,8 @@ num = 1
 
 app = Flask(__name__)
 #fb page access and verfify tokens
-ACCESS_TOKEN = 'EAACZAvQ2phPMBANalkw6QQnsws921Eeuik8I2N7c7CuutB41T56XAZAiTpzP4AQInVe8x9d345MzZAhFzC1w61sE2ZA3gutLN7S9KXTcXRPYekfNMV4vpM92Y2eJpHssSQZAeE7Cm5R9osG3JZCwD68yIHPEooxiyag5KVSPMs9AZDZD'
-VERIFY_TOKEN = 'getLavoroKey'
+ACCESS_TOKEN = 'PRIVATE'
+VERIFY_TOKEN = 'PRIVATE'
 bot = Bot(ACCESS_TOKEN)
  
 #We will receive messages that Facebook sends our bot at this endpoint 
