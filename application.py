@@ -9,3 +9,11 @@ def index():
 @app.route("/login")
 def login():
 	return render_template("login.html")
+
+@app.route("/role")
+def roles():
+	return render_template("role.html")
+
+@app.route("/skills")
+def skills():
+	return render_template("skills.html")
