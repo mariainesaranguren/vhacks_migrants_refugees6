@@ -1,5 +1,8 @@
+@font-face { font-family: Static; src: url('Static.otf'); } 
 body {
-  padding-top: 100px;
+  background-color: #ebebeb;
+  font-family: Static;
+  font-size: 20px;
 }
 .starter-template {
   padding: 40px 15px;
@@ -57,8 +60,8 @@ label:before {
 }
 
 label img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 200px;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
@@ -77,4 +80,25 @@ label img {
   transform: scale(0.9);
   box-shadow: 0 0 5px #333;
   z-index: -1;
+}
+
+
+/* EXAMPLE 5 - Logo with Text*/
+.navbar-default {
+  background-color: #ce2b37
+
+}
+.example5 .navbar-brand {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  color: white;
+  font-size: 36px;
+}
+.role-type img {
+  height: 100px;
+  width: 100px;
+  margin: 40px;
+}
+.fb_iframe_widget{
 }

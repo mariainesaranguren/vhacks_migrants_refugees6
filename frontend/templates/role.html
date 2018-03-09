@@ -4,14 +4,18 @@
 
 	<div class="starter-template">
 		<div class="container">
+			What do you want to do?
 		  <div class="row">
-		  	  <div class="role-type">
-				  <a href="/skills" class="btn-lg btn-success" role="button">FIND</a>
-				  <a href="/skills_want" class="btn-lg btn-primary" role="button">POST</a>
+			  <div class="col-sm-6">
+			  	<a href="/skills"><img class="flag" src="{{ url_for('static', filename='search-jobs.png') }}"></a>
+			  	<br>
+			  	Find Jobs
 			  </div>
-		</div>
-		<div class="logo">
-			<button type="button" class="btn btn-default">Logo Here</button>
+			  <div class="col-sm-6">
+			  	<a href="/skills_want"><img class="flag" src="{{ url_for('static', filename='post-jobs.png') }}"></a>
+			  	<br>
+			  	Post Jobs
+			  </div>
 		</div>
 	</div>
 
