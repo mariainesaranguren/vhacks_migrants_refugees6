@@ -17,10 +17,13 @@ body {
   width: 5.33333333em;
   line-height: 1em;
   margin: 40px;
+  border-radius:50%;
+  box-shadow: 5px 5px 8px #888888;
 }
 
 .logo {
   margin: 50px;
+  box-shadow: 5px 5px 8px #888888;
 }
 
 .fb-login-button { 
