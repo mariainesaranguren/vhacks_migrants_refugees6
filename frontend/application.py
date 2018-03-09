@@ -8,14 +8,16 @@ app.secret_key = os.urandom(24)
 def index():
     return render_template("index.html")
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login")
 def login():
-	if request.method == 'GET':
-		return render_template("login.html")
-	else:
-		print request.json
-		session['user_id'] = request.json
-		return redirect(url_for('role'))
+	return render_template("login.html")	
+
+@app.route("/login_post", methods=["POST"])
+def login_post():
+	print request
+	print request.json
+	session['user_id'] = request.json
+	return '{}'
 
 @app.route("/role")
 def role():
