@@ -21,8 +21,6 @@ def skills():
 @app.route("/user_info", methods=["GET", "POST"])
 def user_info():
 	if request.method == 'POST':
-		print 'post form'
-		print request.values.get('location')
 		return render_template("login.html")
 	else:
 		return render_template("user_info.html")
