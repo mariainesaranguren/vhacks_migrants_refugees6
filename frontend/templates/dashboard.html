@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% include 'layout.html' %}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+
+
+    <!--  Geo Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Count'],
+          ['Syria', 10],
+          ['Afghanistan', 6],
+          ['South Sudan', 5],
+          ['Somalia', 3],
+          ['Sudan', 2],
+          ['Congo', 1],
+          ['Central African Republic', 1]
+
+        ]);
+
+        var options = {
+          backgroundColor: { fill:'transparent' }
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+
+    </script>
+
+    <!-- Pie Chart  -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Hired',     11],
+          ['Not Hired', 2],
+        ]);
+
+        var options = {
+          // backgroundColor: 'red';// #ebebeb;
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+  	<div class="panel-body">
+	      <h1 class="display-4">Employer Profile</h1>
+	      <hr class="my-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h4 align="left">Successful Candidate Matches:</h4>
+          <div class="full-width">
+            <div id="piechart" align="center"></div>
+            <!-- <img src="/static/hired-pie-chart.png"/> -->
+          </div>
+        </div>
+        <div class="col-sm">
+          <h4>Average employee rating:</h4>
+          <br>
+          <div class="numberCircle" align="center">4.65</div>
+        </div>
+        <div class="col-sm">
+          <h4>Your rating:</h4>
+          <br>
+          <div class="numberCircle" align="center">4.78</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <h4>Where you have hired from:</h4>
+        <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm">
+        <div class="text-center"><button class="btn btn-primary btn-sx" type="button">Post a new job</button></div>
+     </div>
+    </div>
+  </div>
+
+
+  </body>
+</html>
