@@ -56,7 +56,7 @@
   }(document, 'script', 'facebook-jssdk'));
 
   function testAPI() {
-    alert('Welcome!  Fetching your information.... ');
+    alert('Welcome back!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.id);
       document.getElementsByName('body').innerHTML =
