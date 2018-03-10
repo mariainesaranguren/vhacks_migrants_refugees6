@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '#a&*scab1t5f#9xh8z1e^(xsyc3)9!5l#$ucy3&@zx0)g-*box'
 
+os.environ["GOOGLE_API_KEY"] = "AIzaSyAnIpBxJWU3po3Q2RrhHQPZZvfRzXAAmOQ"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'job_history',
     'jobs',
     'posters',
     'seekers',
