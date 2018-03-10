@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% include 'layout.html' %}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!--  Geo Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['Syria', 5524333],
+          ['Afghanistan', 2501410],
+          ['South Sudan', 1436667],
+          ['Somalia', 1012277],
+          ['Sudan', 650588],
+          ['Congo', 537429]
+
+        ]);
+
+        var options = {
+          backgroundColor: { fill:'transparent' }
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+
+    </script>
+
+    <!-- Pie Chart  -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Hired',     11],
+          ['Not Hired', 2],
+        ]);
+
+        var options = {
+          backgroundColor: 'transparent'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Employer Profile</h1>
+      <hr class="my-4">
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <!-- <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </p> -->
+    </div>
+   <div class="panel-body">
+    <!-- <div class="aParent"> -->
+    <div class="row">
+      <div class="col-sm">
+        <h4>Successful Candidate Matches:</h4>
+        <!-- <div id="piechart" style="width: 450px; height: 500px;"></div> -->
+        <div class="full-width">
+          <div id="piechart" style="width: 90%; height: 50%;" align="center"></div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <h4>Average employee rating:</h4>
+        <br>
+        <div class="full-width">
+          <div style="width: 90%; height: 50%;" align="center">
+            <br><br>
+            <div class="numberCircle" style="width: 120px; height: 120px;">4.78</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <h4>Where you have hired from:</h4>
+        <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    </div>
+    <br>
+    <div class="row">
+      <!-- <button type="button" class="btn btn-light" align="center">Post a new job</button> -->
+      <div class="col-sm">
+        <div class="text-center"><button class="btn btn-primary btn-sx" type="button">Post a new job</button></div>
+     </div>
+    </div>
+  </div>
+
+
+  </body>
+</html>
