@@ -1,3 +1,4 @@
+import requests
 from math import sin, asin, cos, radians, degrees
 
 LANGUAGE_CHOICES = (
@@ -15,15 +16,15 @@ def bounding_box(lat, lon, distance = 10):
 
 def message_job(seeker, job):
 
-    print("Found job %s for seeker %s" % (job.name, seeker.first_name))
-
-    return {
+    data = {
         "user_id": seeker.facebook_id,
         "job_id": job.pk,
         "job_description": job.description,
         "language": seeker.language,
         "job_wage": job.wage
     }
+
+    requests.post('localhost:5000/lavoro-new-job', data = data)
 
 def intersection(a, b):
     return [x for x in a if (x in b)]
