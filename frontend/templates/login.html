@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 {% include 'layout.html' %}
 <body>
+  <div class="starter-template">
+  You're a few steps away from work!
+  </div>
+
+  <div class="starter-template">
 	<div id="fb-root"></div>
   <div class="container">
     <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
   </div>
+</div>
 
   <script>
     (function(d, s, id) {
@@ -32,9 +38,8 @@
   };
 
   function testAPI() {
+    alert('Welcome back!  Fetching your information.... ');
     FB.api('/me?fields=id,first_name,last_name', function(response) {
-      console.log(Object.keys(response))
-      console.log('Successful login for: ' + response.first_name);
       $.ajax({
         dataType: 'json',
         type: "POST",

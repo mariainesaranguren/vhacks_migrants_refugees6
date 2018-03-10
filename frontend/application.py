@@ -84,13 +84,10 @@ def user_infopost():
 
 	return '{}'
 
+@app.route("/dashboard")
+def dashboard():
+	return render_template("dashboard.html")
+
 @app.route("/success")
 def success():
-	return 'Success! We will contact you with information about a successful matching through Facebook Messenger soon.'
-
-@app.route("/success_test")
-def success_test():
-	print(session)
-	requests.post('http://localhost:8000/jobs/', data = {'job_wage': '12.00', 'first_name': 'Vinay', 'job_description': 'Some cool description', 'location': 'New York, NY, USA', 'facebook_id': '2058520710831813', 'job_name': 'Some cool Job', 'skills': ['Accountant', 'Cook', 'Driver'], 'last_name': 'Khemlani', 'language': 'IT', 'job_date': '1/10/30'})
-	# requests.post('http://localhost:8000/seekers/', data = {'first_name': 'Vinay', 'language': 'IT', 'skills': ['Accountant'], 'location': 'New York, NY, USA', 'facebook_id': '2058520710831813', 'last_name': 'Khemlani'})
-	return 'Success test'
+	return render_template("success.html")

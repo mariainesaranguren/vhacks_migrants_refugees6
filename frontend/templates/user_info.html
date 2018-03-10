@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% include 'layout.html' %}
 <html>
   <head>
     <title>User Info</title>
@@ -7,20 +8,46 @@
   </head>
 
   <body>
-    <div id="locationField">
-      <form method="post" id="form">
-        <input id="autocomplete" placeholder="Enter your address"
-               onFocus="geolocate()" type="text">
-      
-    {% if jobs%}
-        <input id="job_title" placeholder="Enter job title" type="text">
-        <input id="job_description" placeholder="Enter job description" type="text">
-        <input id="wage" placeholder="Enter hourly wage" type="number" min="0.00" max="10000.00" step="0.01">
-        <input id="start_date" placeholder="Enter start date" type="date">
-    {%endif%}
-    <input type="submit" value="Submit">
-      </form>
+    <div class="container">
+    <div class="location-box">
+    <div class="row">
+      <div class="col-12">
+        <form method="post" id="form">
+          <input id="autocomplete" placeholder="Enter your location"
+                 onFocus="geolocate()" type="text">
+          <br>
+      </div>
     </div>
+    </div>
+    {% if jobs%}
+      <div class="job-post">
+          <div class="row">
+            <div class="col-4">
+            <input id="job_title" placeholder="Enter job title" type="text">
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+          <input id="job_description" placeholder="Enter job description" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+          <input id="wage" placeholder="Enter hourly wage" type="number" min="0.00" max="10000.00" step="0.01">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+          <input id="start_date" placeholder="Enter start date" type="date">
+          </div>
+        </div>
+    </div>
+    {%endif%}
+    <center>
+    <button type="submit" class="btn btn-lg">Submit</button>
+  </center>
+  </div>
+      </form>
     <script>
 
     document.querySelector('#form').onsubmit = function() {
