@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 {% include 'layout.html' %}
 <body>
+  <div class="starter-template">
+  You're a few steps away from work!
+  </div>
+
+  <div class="starter-template">
 	<div id="fb-root"></div>
   <div class="container">
     <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
   </div>
-
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=169037257082099&autoLogAppEvents=1';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+</div>
 
   <script>
-  function statusChangeCallback(response){
-    console.log(response);
-    if (response.status === 'connected') {
-      testAPI();
-    } else {
-      console.log("somethingwong")
-    }
-  }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=169037257082099&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 
-  function checkLoginState(){
-    FB.getLoginStatus(function(response){
-      statusChangeCallback(response);
-    });
-  }
-
+  <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId            : '169037257082099',
@@ -38,37 +31,31 @@
       version          : 'v2.12'
     });
     FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
+      if (response.status === 'connected') {
+        testAPI();
+      }
     });
   };
-  (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
 
   function testAPI() {
-    alert('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.id);
-      document.getElementsByName('body').innerHTML =
-      'Thanks for logging in, ' + response.id + '!';
+    alert('Welcome back!  Fetching your information.... ');
+    FB.api('/me?fields=id,first_name,last_name', function(response) {
       $.ajax({
         dataType: 'json',
         type: "POST",
         url: "/login_post",
-        data: JSON.stringify(response.id, null, '\t'),
+        data: JSON.stringify(response),
         contentType: 'application/json;charset=UTF-8',
         crossDomain: true,
-        success: function(response2){window.location.href='/role'},
-        error: function(xhr, ajaxOptions, thrownError){console.log(xhr.responseText)}
+        success: function(successResponse) {
+          window.location.href='/role'
+        },
+        error: function() {
+          alert("An error has occurred. Please try again.")
+        }
       });
     });
   }
-
-  //checkLoginState();
   </script>
   
 </body>
