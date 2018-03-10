@@ -1,0 +1,26 @@
+@font-face { font-family: Static; src: url('Static.otf'); }
+body {
+  background-color: #ebebeb;
+  font-family: Static;
+  font-size: 20px;
+}
+
+.numberCircle {
+    width: 120px;
+    line-height: 120px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    border: 2px solid #666;
+}
+
+.full-width {
+  width: 100%;
+  background: #fff;
+}
+
+.panel-body {
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
