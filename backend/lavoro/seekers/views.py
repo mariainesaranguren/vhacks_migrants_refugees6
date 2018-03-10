@@ -25,20 +25,21 @@ class SeekerViewSet(viewsets.ViewSet):
 
         seeker_skills = seeker.skills.all()
         potential_jobs = Job.objects.filter(**search_params)
-        best_fit = potential_jobs.first()
-        inst = intersection(best_fit.skills.all(), seeker_skills)
-        best_perc = len(intersection(best_fit.skills.all(), seeker_skills)) / float(len(best_fit.skills.all()))
+        if potential_jobs.count() > 0:
+            best_fit = potential_jobs.first()
+            inst = intersection(best_fit.skills.all(), seeker_skills)
+            best_perc = len(intersection(best_fit.skills.all(), seeker_skills)) / float(len(best_fit.skills.all()))
 
-        for job in potential_jobs[1:]:
-            job_skills = job.skills.all()
-            fit_perc = len(intersection(job_skills, seeker_skills)) / float(len(job_skills))
-            if fit_perc > best_perc:
-                best_perc = fit_perc
-                best_fit = job
+            for job in potential_jobs[1:]:
+                job_skills = job.skills.all()
+                fit_perc = len(intersection(job_skills, seeker_skills)) / float(len(job_skills))
+                if fit_perc > best_perc:
+                    best_perc = fit_perc
+                    best_fit = job
 
-        if best_perc > 0:
-            message_job(seeker, best_fit)
-            return
+            if best_perc > 0:
+                message_job(seeker, best_fit)
+                return
 
     def create(self, request):
         data = request.POST

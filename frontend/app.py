@@ -365,10 +365,10 @@ def send_fb_message(recipient_id, response, msg_type):
                 msg = transfer_to_translate('Yeah! You got the job!', response['langugage'])
                 acceptButt = transfer_to_translate('Contact Employer!', response['langugage'])
                 declineButt = transfer_to_translate('I dont want it', response['langugage'])
-            else:
-                msg = 'Yeah! You got the job!'
-                acceptButt = 'Contact Employer!'
-                declineButt = 'I dont want it'
+        else:
+            msg = 'Yeah! You got the job!'
+            acceptButt = 'Contact Employer!'
+            declineButt = 'I dont want it'
 
          # construct payload and send it
         payload = {

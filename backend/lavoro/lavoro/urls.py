@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^seekers/', include('seekers.urls')),
     url(r'^jobs/', include('jobs.urls')),
+    url(r'^history/', include('job_history.urls')),
 ]

@@ -23,8 +23,8 @@ def message_job(seeker, job):
         "language": seeker.language,
         "job_wage": job.wage
     }
-
-    requests.post('localhost:5000/lavoro-new-job', data = data)
+    requests.post('http://127.0.0.1:5000/lavoro-new-job', data = {"user_id":"name"})
+    #requests.post('http://127.0.0.1:5000/lavoro-new-job', data = data)
 
 def intersection(a, b):
     return [x for x in a if (x in b)]

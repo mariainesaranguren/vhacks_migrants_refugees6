@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import operator
 import geocoder
+import requests
 
 from dateutil.parser import parse
 from datetime import date
@@ -10,7 +11,7 @@ from jobs.models import Job
 from seekers.models import Seeker
 from posters.models import Poster
 from skills.models import Skill
-from skills.models import JobHistory
+from job_history.models import JobHistory
 from lavoro.utils import bounding_box, message_job, intersection
 
 class JobHistoryViewSet(viewsets.ViewSet):
@@ -29,7 +30,7 @@ class JobHistoryViewSet(viewsets.ViewSet):
 
         past_seekers = JobHistory.filter(job = job).values_list('seeker__id', flat = True)
 
-        potential_seekers = Seeker.objects.filter(**search_params).exclude('pk__in' = past_seekers)
+        potential_seekers = Seeker.objects.filter(**search_params).exclude(pk__in = past_seekers)
         job_skills = job.skills.all()
         max_score = 0
         max_seekers = []
@@ -45,20 +46,21 @@ class JobHistoryViewSet(viewsets.ViewSet):
 
         max_seekers = sorted(max_seekers, key=lambda seeker: seeker.last_job_accepted)
 
-        seeker = max_seekers[0]
-        message_job(seeker, job)
+        if len(max_seekers) > 0:
+            seeker = max_seekers[0]
+            message_job(seeker, job)
 
     def send_message_to_poster(self, poster, seeker, job):
 
         data = {
             "user_id": poster.facebook_id,
             "job_id": job.pk,
-            "seeker_name": "%s %s" % (seeker.first_name, seeker.last_name)
+            "seeker_name": "%s %s" % (seeker.first_name, seeker.last_name),
             "seeker_skills": ", ".join(list(seeker.skills.all())),
             "language": poster.language,
         }
 
-        requests.post('localhost:5000/lavoro-accept-job', data = data)
+        requests.post('http://127.0.0.1:5000/lavoro-accept-job', data = data)
 
     def send_rejection(self, seeker):
 
@@ -67,7 +69,7 @@ class JobHistoryViewSet(viewsets.ViewSet):
             "language": seeker.language,
         }
 
-        requests.post('localhost:5000/lavoro-reject-job', data = data)
+        requests.post('http://127.0.0.1:5000/lavoro-reject-job', data = data)
 
     def send_connection(self, seeker):
 
@@ -76,7 +78,7 @@ class JobHistoryViewSet(viewsets.ViewSet):
             "language": seeker.language,
         }
 
-        requests.post('localhost:5000/lavoro-new-connection', data = data)
+        requests.post('http://127.0.0.1:5000/lavoro-new-connection', data = data)
 
     def create(self, request):
         data = request.POST

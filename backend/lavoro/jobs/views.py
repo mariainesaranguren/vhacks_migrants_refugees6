@@ -40,8 +40,9 @@ class JobsViewSet(viewsets.ViewSet):
 
         max_seekers = sorted(max_seekers, key=lambda seeker: seeker.last_job_accepted)
 
-        seeker = max_seekers[0]
-        message_job(seeker, job)
+        if len(max_seekers) > 0:
+            seeker = max_seekers[0]
+            message_job(seeker, job)
 
     def create(self, request):
         data = request.POST
