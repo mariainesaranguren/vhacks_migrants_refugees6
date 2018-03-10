@@ -103,5 +103,35 @@ label img {
   width: 100px;
   margin: 40px;
 }
-.fb_iframe_widget{
+.btn { 
+  background-color: #ce2b37;
+  color: white;
+}
+
+.location-box { 
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#autocomplete { 
+  width: 700px;
+  text-align: center;
+}
+
+.job-post {
+  background-color: white;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  width: 400px;
+}
+
+#job_title, #job_description, #wage, #start_date {
+  width: 300px;
+}
+
+.job-post .row { 
+  margin: 20px;
+
 }

@@ -77,5 +77,5 @@ def user_infopost():
 
 @app.route("/success")
 def success():
-	return 'Success! We will contact you with information about a successful matching through Facebook Messenger soon.'
+	return render_template("success.html")
 
